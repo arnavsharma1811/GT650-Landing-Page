@@ -1,8 +1,135 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* === Fonts === */
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
 
-/* Optional: your custom styles */
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Modern Negra";
+  src: url("/fonts/ModernNegraDemo.ttf") format("truetype");
 }
+
+/* === Theme Variables === */
+@theme {
+  --color-red: #d62828;       /* Royal Enfield red */
+  --color-yellow: #e7d393;    /* Accent yellow */
+  --color-gray: #2b2d42;      /* Asphalt gray */
+  --color-white-100: #efefef;
+  --font-sans: "Mona Sans", sans-serif;
+  --font-modern-negra: "Modern Negra", sans-serif;
+  --font-serif: "DM Serif Text", serif;
+}
+
+/* === Global Styles === */
+html,
+body {
+  width: 100%;
+  background-color: black;
+  color: white;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* === Custom Utilities === */
+@utility flex-center { @apply flex justify-center items-center; }
+@utility col-center { @apply flex flex-col justify-center items-center; }
+@utility abs-center { @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2; }
+
+@utility text-gradient {
+  background: linear-gradient(to right, #d62828, #ffba08);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility asphalt-bg {
+  background: radial-gradient(circle at center, #2b2d42 0%, #000 100%);
+}
+
+/* === Components Layer === */
+@layer components {
+  main { @apply w-full overflow-x-hidden; }
+
+  nav {
+    @apply fixed z-50 w-full;
+    div { @apply flex md:flex-row flex-col md:justify-between items-center gap-5 py-5 lg:px-0 px-5 container mx-auto; }
+    p { @apply font-modern-negra text-3xl -mb-2 text-red; }
+    a { @apply cursor-pointer text-nowrap md:text-base text-sm hover:text-red transition-colors; }
+    ul { @apply flex-center lg:gap-12 gap-7; }
+  }
+
+  /* Hero Section */
+  #hero {
+    @apply relative z-10 min-h-dvh w-full border border-transparent;
+    h1 { @apply md:mt-32 mt-40 text-8xl md:text-[20vw] leading-none text-center font-modern-negra text-gradient; }
+    p { @apply text-lg text-center max-w-xl mx-auto mt-6 font-sans text-white-100; }
+    button { @apply mt-10 bg-red hover:bg-yellow text-black font-semibold px-6 py-3 rounded-lg shadow-lg transition duration-300; }
+  }
+
+  /* Specs Section */
+  #specs {
+    @apply relative min-h-dvh w-full asphalt-bg py-20;
+    h2 { @apply text-5xl font-modern-negra text-center mb-16 text-yellow; }
+    .cards { @apply grid md:grid-cols-3 gap-10 container mx-auto px-5; }
+    .card {
+      @apply bg-gray-800 rounded-2xl p-8 text-center shadow-lg transition-transform hover:scale-105;
+      h3 { @apply text-2xl font-modern-negra text-red mb-4; }
+      p { @apply text-white-100 text-lg; }
+    }
+  }
+
+  /* Gallery Section */
+  #gallery {
+    @apply min-h-dvh py-20 container mx-auto;
+    h2 { @apply text-5xl font-modern-negra text-center mb-12 text-gradient; }
+    .images { @apply grid md:grid-cols-3 gap-8; }
+    img { @apply rounded-2xl object-cover w-full h-72 shadow-lg; }
+  }
+
+  /* Features Section */
+  #features {
+    @apply min-h-dvh py-20 asphalt-bg;
+    h2 { @apply text-5xl font-modern-negra text-center mb-12 text-yellow; }
+    .list { @apply grid md:grid-cols-2 gap-10 container mx-auto px-5; }
+    .feature {
+      @apply bg-gray-900 rounded-xl p-8 shadow-lg;
+      h3 { @apply text-2xl font-modern-negra text-red mb-4; }
+      p { @apply text-white-100 text-lg; }
+    }
+  }
+
+  /* Models Section */
+  #models {
+    @apply relative min-h-dvh w-full py-20 asphalt-bg;
+
+    h2 {
+      @apply text-5xl font-modern-negra text-center mb-12 text-yellow;
+    }
+
+    .list {
+      @apply grid md:grid-cols-3 gap-10 container mx-auto px-5;
+    }
+
+    .model-card {
+      @apply bg-gray-900 rounded-2xl p-8 text-center shadow-lg transition-transform hover:scale-105;
+    }
+
+    .model-card h3 {
+      @apply text-2xl font-modern-negra text-red mb-4;
+    }
+
+    .model-card p {
+      @apply text-white-100 text-lg;
+    }
+  }
+
+    /* Test Ride Section */
+  #test-ride {
+    @apply relative py-20 text-center asphalt-bg;
+    h2 { @apply text-5xl font-modern-negra mb-8 text-gradient; }
+    p { @apply text-lg text-white-100 mb-6; }
+    button { @apply bg-yellow hover:bg-red text-black font-semibold px-8 py-4 rounded-lg shadow-lg transition duration-300; }
+  }
+}
+
+
+ 
